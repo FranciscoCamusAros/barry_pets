@@ -31,7 +31,7 @@ const MiCuenta = () => {
           <Card className='mb-4'>
             <Card.Body className='text-center'>
               <Card.Title className='text-center'><h2>Estamos en Mantenimiento 🔩</h2></Card.Title>
-              <h5>Perdón los incovenientes</h5>
+              <h5>Perdón los inconvenientes</h5>
               <div className='text-center'>
                 <Card.Img variant="top" src={salchi} style={{ maxWidth: '200px', maxHeight: '200px', borderRadius: '50%', objectFit: 'cover' }} />
               </div>
