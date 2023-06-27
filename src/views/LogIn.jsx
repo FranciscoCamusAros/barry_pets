@@ -10,6 +10,7 @@ function Login({ handleToken }) {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [credenciales, setCredenciales] = useState(false);
 
   useEffect(() => {
     Aos.init();
@@ -38,6 +39,7 @@ function Login({ handleToken }) {
       } else {
         // Ocurrió un error en la solicitud
         console.error('No se han encontrado credenciales');
+        setCredenciales(true);
       }
     } catch (error) {
       console.error('Error en la solicitud', error);
@@ -64,6 +66,9 @@ function Login({ handleToken }) {
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Contraseña</Form.Label>
             <Form.Control type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
+            {credenciales ? <Form.Text style={{ color: 'red'}}>
+              Usuario o contraseña incorrecta
+            </Form.Text> : null}
           </Form.Group>
           <Button variant="success" type="submit">
             Ingresar

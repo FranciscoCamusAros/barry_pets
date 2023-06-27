@@ -12,13 +12,20 @@ import barry from '../assets/img/nicopets.jpeg';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
-import { useEffect } from 'react';
+import emailjs from '@emailjs/browser';
+
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
 function Home() {
-
   const navigate = useNavigate();
+
+  const [formName, setFormName] = useState('');
+  const [formEmail, setFormEmail] = useState('');
+  const [formMessage, setFormMessage] = useState('');
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
 
   useEffect(() => {
     Aos.init();
@@ -34,6 +41,26 @@ function Home() {
 
   const irACorreas = () => {
     navigate(`/correas`);
+  };
+
+  const enviarCorreo = (event) => {
+    event.preventDefault();
+
+    emailjs
+      .sendForm('service_3etfp4l', 'template_ykzi1a9', event.target, 'e95JWpRKVTdNSOvdj')
+      .then((response) => {
+        console.log(response);
+        setFormSubmitted(true);
+        setFormSuccess(true);
+        setFormName('');
+        setFormEmail('');
+        setFormMessage('');
+      })
+      .catch((error) => {
+        console.log(error);
+        setFormSubmitted(true);
+        setFormSuccess(false);
+      });
   };
 
   return (
@@ -59,7 +86,7 @@ function Home() {
 
             <Carousel.Caption>
               <h3 className='h3_primer_slide'>Correas al mejor precio</h3>
-              <Button variant="warning" size="lg" className='boton_carousel' onClick={ irACorreas }>¡Comprar Ahora!</Button>
+              <Button variant="warning" size="lg" className='boton_carousel' onClick={irACorreas}>¡Comprar Ahora!</Button>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -71,7 +98,7 @@ function Home() {
 
             <Carousel.Caption>
               <h3 className='h3_primer_slide'>Accesorios para tu Mascota</h3>
-              <Button variant="warning" size="lg" className='boton_carousel' onClick={ irAAccesorios }>¡Comprar Ahora!</Button>
+              <Button variant="warning" size="lg" className='boton_carousel' onClick={irAAccesorios}>¡Comprar Ahora!</Button>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
@@ -100,8 +127,8 @@ function Home() {
                   La clave para abordar los problemas de comportamiento de tus mascotas.
                 </Card.Text>
               </Card.Body>
-              <Card.Footer className='text-center'> 
-                <Button variant="warning" className='boton_carousel' onClick={ irAEtologia }>Quiero saber más!</Button>
+              <Card.Footer className='text-center'>
+                <Button variant="warning" className='boton_carousel' onClick={irAEtologia}>Quiero saber más!</Button>
               </Card.Footer>
             </Card>
           </Col>
@@ -117,7 +144,7 @@ function Home() {
                 </Card.Text>
               </Card.Body>
               <Card.Footer className='text-center'>
-                <Button variant="warning" className='boton_carousel' onClick={ irAAccesorios }>Ve nuestros Accesorios</Button>
+                <Button variant="warning" className='boton_carousel' onClick={irAAccesorios}>Ve nuestros Accesorios</Button>
               </Card.Footer>
             </Card>
           </Col>
@@ -133,15 +160,15 @@ function Home() {
                 </Card.Text>
               </Card.Body>
               <Card.Footer className='text-center'>
-                <Button variant="warning" className='boton_carousel' onClick={ irACorreas }>Ve nuestras Correas</Button>
+                <Button variant="warning" className='boton_carousel' onClick={irACorreas}>Ve nuestras Correas</Button>
               </Card.Footer>
             </Card>
           </Col>
         </Row>
       </Container>
       <Container fluid
-      data-aos="fade-up"
-      data-aos-duration="1000"
+        data-aos="fade-up"
+        data-aos-duration="1000"
       >
         <Row>
           <Col xs={12} md={6} xl={6}>
@@ -163,20 +190,25 @@ function Home() {
           <Col xs={12} md={6} xl={6}>
             <h4>¡No te quedes sin Preguntar!</h4>
             <hr />
-            <Form>
+            {formSubmitted && formSuccess ? (
+              <p className="text-success">¡Mensaje enviado con éxito!</p>
+            ) : formSubmitted && !formSuccess ? (
+              <p className="text-danger">Error al enviar el mensaje. Inténtalo nuevamente.</p>
+            ) : null}
+            <Form onSubmit={enviarCorreo}>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Nombre</Form.Label>
-                <Form.Control type="text" placeholder="Francisco" />
+                <Form.Control type="text" name='user_name' placeholder="Francisco" value={formName} onChange={(e) => setFormName(e.target.value)}/>
               </Form.Group>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Correo electrónico</Form.Label>
-                <Form.Control type="email" placeholder="francisco@example.com" />
+                <Form.Control type="email" name='user_email' placeholder="francisco@example.com" value={formEmail} onChange={(e) => setFormEmail(e.target.value)}/>
               </Form.Group>
               <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Déjanos tus preguntas o comentarios</Form.Label>
-                <Form.Control as="textarea" rows={3} />
+                <Form.Control as="textarea" name='user_message' rows={3} value={formMessage} onChange={(e) => setFormMessage(e.target.value)}/>
               </Form.Group>
-              <Button variant="dark" className='mb-4'>Enviar</Button>
+              <Button variant="dark" type='submit' className='mb-4'>Enviar</Button>
             </Form>
           </Col>
         </Row>
