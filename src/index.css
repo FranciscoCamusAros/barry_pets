@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: 0 !important;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +10,234 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/*Home*/
+
+.img_carousel_principal{
+  height: 600px;
+  object-fit: cover;
+  opacity: 0.9;
+}
+
+.h3_primer_slide{
+  font-size: 50px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  text-align: center;
+}
+
+.lema_barrypets{
+  padding: 10px;
+  font-size: large;
+  background-color: black;
+  border-radius: 5px;
+}
+
+.boton_carousel{
+  font-weight: 700 !important; 
+  color: rgb(255, 255, 255) !important;  
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.barra_envíos_home{
+  text-align: center;
+  background-color: rgb(27, 27, 27);
+  margin: 0;
+  color: white;
+}
+
+.h5_barra_envios_home{
+  padding: 10px;
+}
+
+.título_productos_home{
+  text-align: center;
+  padding-bottom: 35px;
+}
+
+.card_img_home{
+  height: 200px; /* Ajusta la altura deseada */
+  width: auto; /* Ancho automático para mantener la proporción de la imagen */
+  object-fit: contain; /* Ajusta la imagen dentro del contenedor */
+}
+
+/*Q&A*/
+
+.container_qa{
+  min-height: 91vh;
+}
+
+/*Log in*/
+
+.container_login{
+  min-height: 91vh;
+}
+
+.form_login{
+  padding-top: 150px;
+}
+
+/*Sign Up*/
+
+.row_signup{
+  padding-top: 140px;
+}
+
+/*Accesorios*/
+
+.container_accesorios_correas{
+  min-height: 91vh;
+}
+
+.row_accesorios_correas{
+  padding-top: 100px;
+}
+
+.card_img_acce_correa{
+  height: 150px;
+  object-fit: contain;
+}
+
+.button_acces_correa{
+  color: white !important;
+}
+
+.div_precio{
+  text-align: center;
+  font-weight: 500;
+  font-size: large;
+}
+
+/*Etología*/
+
+.container_etologia{
+  min-height: 91vh;
+}
+
+.row_etologia{
+  padding-top: 110px;
+}
+
+.card_img_eto{
+  height: 150px;
+  object-fit: contain;
+}
+
+/*Carrito*/
+
+.container_carrito{
+  min-height: 91vh;
+  padding-top: 150px;
+}
+
+/*Footer*/
+
+.Footer{
+  background-color: rgb(27, 27, 27);
+  color: white;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.a_barrypets_footer{
+  text-decoration: none;
+}
+
+/*Navbar*/
+
+.link{
+  text-decoration: none;
+  color: grey;
+}
+
+.link_drop{
+  text-decoration: none;
+  color: black; 
+}
+
+.link_btn{
+  text-decoration: none;
+  color: white;
+}
+
+.link_activo{
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/*Carro*/
+
+.div_padre_carro {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.div_img_carro {
+  margin-right: 30px;
+}
+
+.btn_carro {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.btn_carro_aumenta{
+  background-color: rgb(54, 54, 199);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.btn_carro_disminuye{
+  background-color: rgb(148, 148, 148);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.img_carro{
+  height: 100px;
+  object-fit: contain;
+}
+
+.h5_carro{
+  margin-right: 30px;
+}
+
+.div_cantidad_carro{
+  margin-right: 30px;
+}
+
+@media (max-width: 768px) {
+  .div_padre_carro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .div_img_carro {
+    margin-bottom: 10px; 
+  }
+
+  .div_btn_carro {
+    margin-top: 10px;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
 }
