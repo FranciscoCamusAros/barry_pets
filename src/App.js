@@ -10,6 +10,8 @@ import Login from './views/LogIn';
 import Correas from './views/Correas';
 import Accesorios from './views/Accesorios';
 import Etologia from './views/Etologia';
+import PrivateRoute from './utils/PrivateRoute';
+import MiCuenta from './views/MiCuenta';
 import './index.css';
 import MyContext from './context/my_context';
 import { useState } from 'react';
@@ -23,11 +25,19 @@ function App() {
   const [unidadPlato, setPlato] = useState(0);
   const [unidadDispensador, setDispensador] = useState(0);
 
-  const sharedState = {correaUno, setCorreaUno, correaDos, setCorreaDos, correaTres, setCorreaTres, unidadKong, setKong, unidadPlato, setPlato, unidadDispensador, setDispensador};
 
+  const sharedState = { correaUno, setCorreaUno, correaDos, setCorreaDos, correaTres, setCorreaTres, unidadKong, setKong, unidadPlato, setPlato, unidadDispensador, setDispensador };
+
+  const [token, setToken] = useState(false);
+
+  const handleToken = (newToken) => {
+    setToken(newToken);
+  };
+  
+  console.log(token)
   return (
     <div className="App">
-      <MyContext.Provider value={ sharedState }>
+      <MyContext.Provider value={sharedState}>
         <BrowserRouter>
           <Navbars />
           <Routes>
@@ -37,8 +47,11 @@ function App() {
             <Route path="/preguntas_frecuentes" element={<PreguntasFrecuentes />} />
             <Route path="/carrito" element={<Carro />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login handleToken={handleToken} />} />
             <Route path="/etologia" element={<Etologia />} />
+            <Route element={<PrivateRoute token={token} />}>
+              <Route path='/micuenta' element={<MiCuenta />} />
+            </Route>
           </Routes>
         </BrowserRouter>
         <Footer />

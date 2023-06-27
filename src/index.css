@@ -146,6 +146,8 @@ code {
 
 .a_barrypets_footer{
   text-decoration: none;
+  color: white;
+  font-weight: 500;
 }
 
 /*Navbar*/

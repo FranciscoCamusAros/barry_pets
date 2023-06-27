@@ -28,6 +28,8 @@ function Navbars() {
                 <NavDropdown.Item><Link className='link_drop' to='/signup'>Sign Up</Link></NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item><Link className='link_drop' to='/login'>Log In </Link></NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item><Link className='link_drop' to='/micuenta'>Mi Cuenta </Link></NavDropdown.Item>
               </NavDropdown>
               <Nav.Link><Link className='link' to='/carrito'> Carrito 🛒</Link></Nav.Link>
             </Nav>
